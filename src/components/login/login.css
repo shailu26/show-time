@@ -1,0 +1,5 @@
+.login-page {
+  height: 100vh;
+  background: url('../../assets/images/showtym.gif') no-repeat center center fixed;
+  background-size: cover;
+}
