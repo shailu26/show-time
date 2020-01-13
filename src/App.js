@@ -6,14 +6,17 @@ import requireAuth from './services/authentication'
 import LoginComponent from './components/login/login';
 import HomeComponent from './components/home/home';
 import Navbar from './components/navbar/navbar';
-import {ThemeContext} from './theme-context'
+import MovieDetailComponent from './components/movie-detail/movieDetail';
+import {ThemeContext} from './theme-context';
 import * as $ from 'jquery';
 let component = () => {
     return (
         <div className='main-container'>
             <Navbar/>
             <Switch>
-                <Route path='/' component={HomeComponent} exact/> {/* <Route path='/' component={requireAuth(HomeComponent)} exact/> */}
+                <Route path='/' component={HomeComponent} exact/>
+                <Route path='/movie/:movieName/:id' component={MovieDetailComponent} exact/>
+                {/* <Route path='/' component={requireAuth(HomeComponent)} exact/> */}
             </Switch>
         </div>
     )

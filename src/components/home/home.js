@@ -108,6 +108,21 @@ class Home extends Component {
         console.log(this.state[filterBy]);
     }
 
+    slugify = (text) => {
+        return text
+            .toString()
+            .toLowerCase()
+            .replace(/\s+/g, '-') // Replace spaces with -
+            .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+            .replace(/\-\-+/g, '-') // Replace multiple - with single -
+            .replace(/^-+/, '') // Trim - from start of text
+            .replace(/-+$/, ''); // Trim - from end of text
+    }
+
+    viewMovieDetails = (movieName, id) => {
+        this.props.history.push(`movie/${this.slugify(movieName)}/${id}`);
+    }
+
     render() {
 
         return (
@@ -146,7 +161,7 @@ class Home extends Component {
                                                     key={language.id}
                                                     onClick={() => this.handleCheckedElement(language.value, 'languages')}>
                                                     <input type="checkbox" checked={language.isChecked} value={language.value}/>
-                                                    <span class="select-text">
+                                                    <span className="select-text">
                                                         {language.value}
                                                     </span>
                                                 </li>
@@ -191,7 +206,7 @@ class Home extends Component {
                                                     key={format.id}
                                                     onClick={() => this.handleCheckedElement(format.value, 'formats')}>
                                                     <input type="checkbox" checked={format.isChecked} value={format.value}/>
-                                                    <span class="select-text">
+                                                    <span className="select-text">
                                                         {format.value}
                                                     </span>
                                                 </li>
@@ -236,7 +251,7 @@ class Home extends Component {
                                                     key={genre.id}
                                                     onClick={() => this.handleCheckedElement(genre.value, 'genres')}>
                                                     <input type="checkbox" checked={genre.isChecked} value={genre.value}/>
-                                                    <span class="select-text">
+                                                    <span className="select-text">
                                                         {genre.value}
                                                     </span>
                                                 </li>
@@ -251,32 +266,32 @@ class Home extends Component {
                 </div>
 
                 <div className="main-view">
-                    <div class="movie-container">
+                    <div className="movie-container">
 
-                        <div class="movie-card">
-                            <div class="movie-header manOfSteel">
-                                
-                            </div>
-                            <div class="movie-content">
-                                <div class="movie-content-header">
+                        <div className="movie-card">
+                            <div className="movie-header manOfSteel"></div>
+                            <div className="movie-content">
+                                <div className="movie-content-header">
                                     <span>
-                                        <h3 class="movie-title">Man of Steel</h3>
+                                        <h3 className="movie-title">Man of Steel</h3>
                                     </span>
-                                    <div class="movie-screen">3D/2D</div>
+                                    <div className="movie-screen">3D/2D</div>
                                 </div>
-                                <div class="movie-info">
-                                    <div class="info-section">
+                                <div className="movie-info">
+                                    <div className="info-section">
                                         <label>Ratings</label>
                                         <span>
                                             <Rater rating={4} total={5} interactive={false}/>
                                         </span>
                                     </div>
-                                    <div class="info-section">
+                                    <div className="info-section">
                                         <label>Info</label>
-                                        <span>UA <span className="movie-detail-divider">-</span> Hindi, English</span>
+                                        <span>UA
+                                            <span className="movie-detail-divider">-</span>
+                                            Hindi, English</span>
                                     </div>
-                                    <div class="info-section">
-                                        <div className="btn btn-hover">
+                                    <div className="info-section">
+                                        <div className="btn btn-hover"  onClick={() => this.viewMovieDetails('Man of Steel', 1)}>
                                             view
                                         </div>
                                     </div>
@@ -284,30 +299,30 @@ class Home extends Component {
                             </div>
                         </div>
 
-                        <div class="movie-card">
-                            <div class="movie-header theDarkTower">
-                                
-                            </div>
-                            <div class="movie-content">
-                                <div class="movie-content-header">
+                        <div className="movie-card">
+                            <div className="movie-header theDarkTower"></div>
+                            <div className="movie-content">
+                                <div className="movie-content-header">
                                     <span>
-                                        <h3 class="movie-title">The Dark Tower</h3>
+                                        <h3 className="movie-title">The Dark Tower</h3>
                                     </span>
-                                    <div class="movie-screen">3D/2D</div>
+                                    <div className="movie-screen">3D/2D</div>
                                 </div>
-                                <div class="movie-info">
-                                    <div class="info-section">
+                                <div className="movie-info">
+                                    <div className="info-section">
                                         <label>Ratings</label>
                                         <span>
                                             <Rater rating={2} total={5} interactive={false}/>
                                         </span>
                                     </div>
-                                    <div class="info-section">
+                                    <div className="info-section">
                                         <label>Info</label>
-                                        <span>UA <span className="movie-detail-divider">-</span> Hindi</span>
+                                        <span>UA
+                                            <span className="movie-detail-divider">-</span>
+                                            Hindi</span>
                                     </div>
-                                    <div class="info-section">
-                                        <div className="btn btn-hover">
+                                    <div className="info-section">
+                                        <div className="btn btn-hover" onClick={() => this.viewMovieDetails('The Dark Tower', 2)}>
                                             view
                                         </div>
                                     </div>
@@ -315,30 +330,30 @@ class Home extends Component {
                             </div>
                         </div>
 
-                        <div class="movie-card">
-                            <div class="movie-header bladeRunner2049">
-                                
-                            </div>
-                            <div class="movie-content">
-                                <div class="movie-content-header">
+                        <div className="movie-card">
+                            <div className="movie-header bladeRunner2049"></div>
+                            <div className="movie-content">
+                                <div className="movie-content-header">
                                     <span>
-                                        <h3 class="movie-title">Blade Runner 2049</h3>
+                                        <h3 className="movie-title">Blade Runner 2049</h3>
                                     </span>
-                                    <div class="movie-screen">3D/2D</div>
+                                    <div className="movie-screen">3D/2D</div>
                                 </div>
-                                <div class="movie-info">
-                                    <div class="info-section">
+                                <div className="movie-info">
+                                    <div className="info-section">
                                         <label>Ratings</label>
                                         <span>
                                             <Rater rating={4.5} total={5} interactive={false}/>
                                         </span>
                                     </div>
-                                    <div class="info-section">
+                                    <div className="info-section">
                                         <label>Info</label>
-                                        <span>UA <span className="movie-detail-divider">-</span> Hindi</span>
+                                        <span>UA
+                                            <span className="movie-detail-divider">-</span>
+                                            Hindi</span>
                                     </div>
-                                    <div class="info-section">
-                                        <div className="btn btn-hover view-btn">
+                                    <div className="info-section">
+                                        <div className="btn btn-hover view-btn"  onClick={() => this.viewMovieDetails('Blade Runner 2049', 3)}>
                                             view
                                         </div>
                                     </div>

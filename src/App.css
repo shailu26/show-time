@@ -237,3 +237,41 @@ input:checked + .toggle .star--6 {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.display-flex {
+  display: flex;
+}
+
+.font-22 {
+  font-size: 22px;
+}
+.width-50 {
+  width: 50%;
+}
+.clr-white {
+  color: white;
+}
+.glow {
+  box-shadow: 0px 0px 15px 0px rgb(234, 60, 104);
+  -webkit-box-shadow: 0px 0px 15px 0px rgb(234, 60, 104);
+  -moz-box-shadow: 0px 0px 15px 0px rgb(234, 60, 104);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: black;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ea3c68;
+  border-radius: 2px;
+  min-height: 40px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ea4f76;
+}

@@ -1,0 +1,467 @@
+/* .movie-cover {
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+} */
+.movie-background {
+  background: url('http://henrycavill.org/images/Films/2013-Man-of-Steel/posters/3-Walmart-Superman-a.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  display: block;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  border-radius: 5px;
+}
+.movie-detail-container {
+  display: flex;
+  margin: -182px auto 0;
+  position: relative;
+}
+.movie-block {
+  padding-bottom: 20px;
+}
+.movie-details,
+.movie-poster {
+  height: calc(100vh - 6.6rem);
+}
+.movie-poster {
+  width: 40%;
+  padding: 40px;
+  padding-left: 85px;
+}
+
+.movie-details {
+  /* overflow: auto; */
+  width: 60%;
+  padding-top: 15px;
+  text-transform: capitalize;
+}
+.movie-name {
+  font-size: 2em;
+  margin-top: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: white;
+}
+.breadcrumbs {
+  font-size: 14px;
+  color: #ea3c68;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.ratings-block {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 25%;
+}
+
+.ratings-block .rating {
+  letter-spacing: 3px;
+}
+
+.ratings-block .react-rater-star.is-active,
+.rating-number {
+  text-shadow: 1px 1px 4px #fc6;
+}
+.rating-number {
+  font-size: 20px;
+  color: #f9cb65;
+  font-weight: bold;
+}
+.other-details {
+  width: 75%;
+  padding-top: 18px;
+  padding-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: white;
+}
+.release-date-block {
+  position: absolute;
+  left: 3%;
+  top: 16%;
+}
+.box {
+  width: 100px;
+  float: left;
+  height: 125px;
+  background: #ea3c68;
+  color: white;
+  text-align: center;
+  border-radius: 2px;
+}
+.date-day {
+  padding-top: 5px;
+  font-size: 45px;
+  font-weight: bold;
+}
+.divider {
+  width: 15px;
+  height: 2px;
+  color: white;
+  background: white;
+  margin: 0 auto;
+}
+.date-month-year {
+  padding-top: 15px;
+  font-weight: bold;
+}
+.play-trailer-block {
+  border-radius: 2px;
+  position: absolute;
+  top: 75%;
+  left: 35.4%;
+  width: 50px;
+  height: 50px;
+  background: #ea3c68;
+}
+.play-box {
+  width: 100%;
+  display: block;
+  margin-left: 2px;
+  margin-top: 2px;
+  text-align: center;
+  font-size: 33px;
+  cursor: pointer;
+}
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-bottom: 15px;
+}
+.actors-list {
+  display: grid;
+  grid-template-columns: 16% 16% 16% 16% 16% 16%;
+  grid-gap: 5px;
+  text-align: center;
+}
+.actor-image {
+  background-image: url(../../assets/images/default-avatar.jpg);
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  margin: 0 auto;
+  border-radius: 25px;
+}
+.other-actors .actor-name {
+  position: relative;
+  top: -65px;
+  font-weight: bold;
+  font-size: 23px;
+}
+.other-actors .actor-image {
+  width: 80px;
+  height: 80px;
+}
+.actor-name {
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+.show-time-app.black .other-actors .actor-name {
+  color: black;
+}
+.synopsis {
+  padding-bottom: 20px;
+}
+.synopsis-text {
+  letter-spacing: 0.5px;
+  font-weight: bold;
+}
+.video-list {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+.show-time-app.black .video-list {
+  background: black;
+}
+.show-time-app.white .video-list {
+  background: white;
+}
+.video-list .list {
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  /* width: 100%; */
+  max-width: 260px;
+  margin: 0.5em;
+  border-radius: 10px;
+  display: inline-block;
+  cursor: pointer;
+  /* opacity: 0.85; */
+  display: block;
+  width: 100%;
+  height: 145px;
+}
+.movie-pictures {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  box-sizing: border-box;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  text-align: center;
+  background-position: bottom;
+}
+.movie-pictures.list-image-1 {
+  background-image: url(https://cdn.collider.com/wp-content/uploads/2013/05/man-of-steel-henry-cavill-superman.jpg);
+}
+.movie-pictures.list-image-2 {
+  background-image: url(https://wallpaperaccess.com/full/140257.jpg);
+}
+.movie-pictures.list-image-3 {
+  background-image: url(https://images6.alphacoders.com/337/thumb-1920-337242.jpg);
+}
+.movie-pictures.list-image-4 {
+  background-image: url(https://wallpaperaccess.com/full/140257.jpg);
+}
+.movie-pictures.list-image-5 {
+  background-image: url(https://wallpaperaccess.com/full/140257.jpg);
+}
+.show-time-app.white .video-list .list .movie-pictures {
+  border: 1px solid #cfd4db;
+  box-shadow: 0px 6px 18px #cfd4db;
+  transition: all 0.5s;
+}
+.show-time-app.black .video-list .list .movie-pictures {
+  border: 1px solid #151515;
+  box-shadow: 0px 6px 18px #151515;
+  transition: all 0.5s;
+}
+
+.last-video-list {
+  color: #ea3c68;
+  font-weight: bold;
+  font-size: 23px;
+  position: relative;
+  top: 40%;
+}
+.book-tickets-btn {
+  float: right;
+  margin-right: 40px;
+  font-size: 23px;
+  font-weight: bold;
+  background: #ea3c68;
+  color: white;
+}
+.banner-synopsis {
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  height: 230px;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+.cover-image {
+  background-image: url('http://henrycavill.org/images/Films/2013-Man-of-Steel/posters/3-Walmart-Superman-a.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  display: block;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -webkit-filter: blur(20px);
+  filter: blur(20px);
+}
+.banner-overlay {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.allow-scroll {
+  overflow: auto;
+  height: 60vh;
+  padding-top: 15px;
+}
+.movie-name,
+.breadcrumbs,
+.casting,
+.synopsis,
+.videos-pictures,
+.ratings-block,
+.other-details {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1920px) and (max-width: 2560px) {
+  .play-trailer-block {
+    left: 37.5%;
+  }
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .play-trailer-block {
+    left: 35.5%;
+  }
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .movie-detail-container {
+    display: block;
+  }
+  .movie-poster {
+    width: 100%;
+    padding-left: 42px;
+    padding-bottom: 0;
+  }
+  .movie-details {
+    width: 100%;
+  }
+  .play-trailer-block {
+    top: 40%;
+    left: 91%;
+  }
+  .allow-scroll {
+    height: unset;
+  }
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .play-trailer-block {
+    left: 93.4%;
+  }
+  .allow-scroll {
+    height: unset;
+  }
+  .book-tickets-btn {
+    margin-right: 18px;
+  }
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .movie-detail-container {
+    display: block;
+  }
+  .movie-poster {
+    width: 100%;
+    padding-left: 42px;
+    padding-bottom: 0;
+  }
+  .release-date-block {
+    left: 1%;
+    top: 8%;
+  }
+  .movie-details {
+    width: 100%;
+  }
+  .play-trailer-block {
+    top: 35%;
+    left: 81%;
+  }
+  .allow-scroll {
+    height: unset;
+  }
+  .show-time-app.black .allow-scroll {
+    background: black;
+  }
+  .show-time-app.white .movie-name {
+    color: black;
+  }
+  .show-time-app.white .other-details {
+    color: black;
+  }
+  .ratings-block {
+    width: 100%;
+  }
+  .book-tickets-btn {
+    margin-right: 18px;
+  }
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .movie-detail-container {
+    display: block;
+  }
+  .movie-poster {
+    width: 100%;
+    padding-left: 42px;
+    padding-bottom: 0;
+  }
+  .release-date-block {
+    left: 1%;
+    top: 8%;
+  }
+  .movie-details {
+    width: 100%;
+  }
+  .play-trailer-block {
+    top: 35%;
+    left: 81%;
+  }
+  .allow-scroll {
+    height: unset;
+  }
+  .show-time-app.black .allow-scroll {
+    background: black;
+  }
+  .show-time-app.white .movie-name {
+    color: black;
+  }
+  .show-time-app.white .other-details {
+    color: black;
+  }
+  .ratings-block {
+    width: 100%;
+  }
+  .actors-list {
+    grid-template-columns: 32% 32% 32%;
+  }
+  .book-tickets-btn {
+    margin-right: 18px;
+  }
+}

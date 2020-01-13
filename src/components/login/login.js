@@ -2,12 +2,31 @@ import React, {Component} from 'react';
 import axios from '../../services/request/axios'
 import './login.css';
 import jwt from 'jsonwebtoken'
+import * as $ from 'jquery';
 // import {toast} from 'react-toastify';
 
 class Login extends Component {
     state = {
         email: '',
         password: ''
+    }
+
+    componentDidMount() {
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('login-container');
+
+        signUpButton.addEventListener('click', () => {
+            container
+                .classList
+                .add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container
+                .classList
+                .remove("right-panel-active");
+        });
     }
 
     handleLoginClick = (e) => {
@@ -68,60 +87,68 @@ class Login extends Component {
             .push(`/signup`);
     }
 
-    componentWillMount() {}
-
     render() {
 
         return (
-            <div>
-                <div className="error-404">4</div>
-                <div className="login-page">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                                <div className="card card-signin my-5">
-                                    <div className="card-body">
-                                        <h5 className="card-title text-center">Sign In</h5>
-                                        <form className="form-signin">
-                                            <div className="pd-bt-25">
-                                                <input
-                                                    type="email"
-                                                    id="email"
-                                                    className="form-control"
-                                                    placeholder="Email address"
-                                                    onChange={this.handleEmailChange}
-                                                    required
-                                                    autoFocus/>
-                                            </div>
+            <div className="display-flex">
+                <div className="login-pg">
 
-                                            <div className="pd-bt-25">
-                                                <input
-                                                    type="password"
-                                                    id="password"
-                                                    className="form-control"
-                                                    placeholder="Password"
-                                                    onChange={this.handlePasswordChange}
-                                                    required/>
-                                            </div>
+                    <div className="login-container" id="login-container">
+                        <div className="form-container sign-up-container">
+                            <form action="#" className="login-form">
+                                <h1 className="h1-ele">Create Account</h1>
+                                <div className="social-container">
+                                    <span className="social social-icons span-ele">
+                                        <i className="fa fa-facebook-f"></i>
+                                    </span>
+                                    <span className="social social-icons span-ele">
+                                        <i className="fa fa-google-plus"></i>
+                                    </span>
 
-                                            <button
-                                                className="btn btn-lg btn-primary btn-block text-uppercase"
-                                                type="submit"
-                                                onClick={this.handleLoginClick}>Sign in</button>
-                                            <hr className="my-4"/>
-                                            <div className="or-option">OR</div>
-                                            <button
-                                                className="btn btn-lg btn-primary btn-block text-uppercase"
-                                                onClick={this.goToSignup}>Signup</button>
-                                        </form>
-                                    </div>
+                                </div>
+                                <span className="span-ele">or use your email for registration</span>
+                                <input className="login-input" type="text" placeholder="Name"/>
+                                <input className="login-input" type="email" placeholder="Email"/>
+                                <input className="login-input" type="password" placeholder="Password"/>
+                                <button className="login-btn">Sign Up</button>
+                            </form>
+                        </div>
+                        <div className="form-container sign-in-container">
+                            <form action="#" className="login-form">
+                                <h1 className="h1-ele">Sign in</h1>
+                                <div className="social-container">
+                                    <span className="social social-icons span-ele">
+                                        <i className="fa fa-facebook-f"></i>
+                                    </span>
+                                    <span className="social social-icons span-ele">
+                                        <i className="fa fa-google-plus"></i>
+                                    </span>
+
+                                </div>
+                                <span className="span-ele">or use your account</span>
+                                <input className="login-input" type="email" placeholder="Email"/>
+                                <input className="login-input" type="password" placeholder="Password"/>
+                                <div className="forgot">Forgot your password?</div>
+                                <button className="login-btn">Sign In</button>
+                            </form>
+                        </div>
+                        <div className="overlay-container">
+                            <div className="overlay">
+                                <div className="overlay-panel overlay-left">
+                                    <h1 className="welcome-text h1-ele">Welcome Back!</h1>
+                                    <p>To keep connected with us please login with your personal info</p>
+                                    <button className="ghost" id="signIn">Sign In</button>
+                                </div>
+                                <div className="overlay-panel overlay-right">
+                                    <h1 className="black-text h1-ele">Hello, Friend!</h1>
+                                    <p>Enter your personal details and start journey with us</p>
+                                    <button className="ghost" id="signUp">Sign Up</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            <div className="error-404">4</div>
+                <div className="animation-view"></div>
             </div>
         )
     }

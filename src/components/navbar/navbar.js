@@ -57,7 +57,7 @@ class Navbar extends Component {
                         <input aria-label="Search" autoComplete="off" spellCheck="false" value="" className="" placeholder="" onChange={this.searchOption}/>
                     </div>
                     <nav className="nav-links can-hide">
-                        <div className="nav-item cursor-pointer"><div onClick={() => this.goToPath('login')} className="nav-link">Login</div></div>
+                        <div className="nav-item cursor-pointer"><div onClick={() => this.goToPath('/login')} className="nav-link">Login</div></div>
                     </nav>
                 </div>
             </header>
