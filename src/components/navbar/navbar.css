@@ -239,7 +239,7 @@
 }
 @media (max-width: 719px) {
   .search-box input {
-    left: 1rem;
+    left: -1rem;
   }
 }
 @media (max-width: 959px) {
@@ -252,10 +252,4 @@
 }
 .nav-item a {
   text-decoration: none;
-}
-
-@media (max-width: 719px) {
-  .navbar .can-hide {
-    display: none;
-  }
 }

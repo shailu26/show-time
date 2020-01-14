@@ -275,3 +275,9 @@ input:checked + .toggle .star--6 {
 ::-webkit-scrollbar-thumb:hover {
   background: #ea4f76;
 }
+
+@media (max-width: 719px) {
+  .can-hide {
+    display: none;
+  }
+}

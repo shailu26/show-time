@@ -148,7 +148,7 @@ class Login extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="animation-view"></div>
+                <div className="animation-view can-hide"></div>
             </div>
         )
     }
