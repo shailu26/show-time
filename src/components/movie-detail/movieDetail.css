@@ -85,7 +85,7 @@
   width: 75%;
   padding-top: 18px;
   padding-bottom: 15px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   letter-spacing: 1px;
   color: white;
@@ -139,7 +139,7 @@
   cursor: pointer;
 }
 .title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
   padding-bottom: 15px;

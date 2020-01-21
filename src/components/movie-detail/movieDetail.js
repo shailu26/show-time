@@ -19,6 +19,10 @@ class MovieDetail extends Component {
         // this.setState({onGoingRequest: false})     });
     }
 
+    bookMovie = () => {
+        console.log(this.props)
+        this.props.history.push(`/movie/${this.props.match.params.movieName}/${this.props.match.params.id}/book-tickets`);
+    }
     render() {
         return (
             <div>
@@ -34,7 +38,7 @@ class MovieDetail extends Component {
                     <div className="movie-details">
                         <div className="movie-block">
                             <div className="movie-name">Man of steel
-                                <span className="book-tickets-btn btn glow">Book</span>
+                                <span onClick={this.bookMovie} className="book-tickets-btn btn glow">Book</span>
                             </div>
                             <div className="breadcrumbs">
                                 Sci-fi / English / 2016 / 1h 59m

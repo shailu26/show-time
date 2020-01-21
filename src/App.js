@@ -1,23 +1,33 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import './App.css';
 import * as Cookies from "js-cookie";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import requireAuth from './services/authentication'
-import LoginComponent from './components/login/login';
-import HomeComponent from './components/home/home';
-import Navbar from './components/navbar/navbar';
-import MovieDetailComponent from './components/movie-detail/movieDetail';
 import {ThemeContext} from './theme-context';
 import * as $ from 'jquery';
+import logo from './assets/images/logo1.png'
+import LoaderComponent from './components/loader/loader';
+
+const LoginComponent = (lazy(() => (import ('./components/login/login'))));
+const HomeComponent = (lazy(() => (import ('./components/home/home'))));
+const Navbar = (lazy(() => (import ('./components/navbar/navbar'))));
+const MovieDetailComponent = (lazy(() => (import ('./components/movie-detail/movieDetail'))));
+const BookMovieComponent = (lazy(() => (import ('./components/book-movie/bookMovie'))));
+
 let component = () => {
     return (
         <div className='main-container'>
             <Navbar/>
-            <Switch>
-                <Route path='/' component={HomeComponent} exact/>
-                <Route path='/movie/:movieName/:id' component={MovieDetailComponent} exact/>
-                {/* <Route path='/' component={requireAuth(HomeComponent)} exact/> */}
-            </Switch>
+            <Suspense fallback={<LoaderComponent/>}>
+                <Switch>
+                    <Route path='/' component={HomeComponent} exact/>
+                    <Route path='/movie/:movieName/:id' component={MovieDetailComponent} exact/>
+                    <Route
+                        path='/movie/:movieName/:id/book-tickets'
+                        component={BookMovieComponent}
+                        exact/> {/* <Route path='/' component={requireAuth(HomeComponent)} exact/> */}
+                </Switch>
+            </Suspense>
         </div>
     )
 }
@@ -26,32 +36,36 @@ function App() {
     const {theme, toggle} = React.useContext(ThemeContext)
     $(() => {
         setTimeout(() => {
-            let value = localStorage.getItem('dark') ? localStorage.getItem('dark'): '';
-            $('#dn').prop('checked', value.toLowerCase() === 'true'? true: false);
+            let value = localStorage.getItem('dark')
+                ? localStorage.getItem('dark')
+                : '';
+            $('#dn').prop('checked', value.toLowerCase() === 'true'
+                ? true
+                : false);
         }, 0)
     });
     return (
 
         <div
-            className={theme.backgroundColor === 'white' ? 'show-time-app white': 'show-time-app black'}
+            className={theme.backgroundColor === 'white'
+            ? 'show-time-app white'
+            : 'show-time-app black'}
             style={{
             backgroundColor: theme.backgroundColor,
             color: theme.color
         }}>
 
             <BrowserRouter>
-                <Switch>
-                    <Route exact path="/login" component={LoginComponent}/>
-                    <Route path='/' component={component}/>
-                </Switch>
+                <Suspense fallback={<LoaderComponent/>}>
+                    <Switch>
+                        <Route exact path="/login" component={LoginComponent}/>
+                        <Route path='/' component={component}/>
+                    </Switch>
+                </Suspense>
             </BrowserRouter>
 
             <div className="toggleWrapper">
-                <input
-                    type="checkbox"
-                    onChange={toggle}
-                    className="dn"
-                    id="dn"/>
+                <input type="checkbox" onChange={toggle} className="dn" id="dn"/>
                 <label htmlFor="dn" className="toggle">
                     <span className="toggle__handler">
                         <span className="crater crater--1"></span>
