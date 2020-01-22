@@ -1,0 +1,227 @@
+.book-movie-container {
+  min-height: calc(100vh - 3.6rem);
+}
+.book-movie-box {
+  height: 17vh;
+  background: #ea3c68;
+  display: flex;
+}
+
+.movies-details-box {
+  width: 60%;
+  padding-left: 50px;
+}
+.movies-cast-box {
+  width: 40%;
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+.movies-details-box,
+.movies-cast-box {
+  margin: auto;
+  color: black;
+}
+
+.movie-detail-name .name {
+  font-size: 2em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+}
+
+.movie-detail-name .name span:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.movie-detail-name .categories {
+  font-size: 14px;
+  margin-right: 10px;
+  text-transform: uppercase;
+}
+.movie-detail-name .other {
+  padding-top: 5px;
+}
+.movie-detail-name .tags {
+  margin: 10px;
+  padding: 2px 8px;
+  font-size: 12px;
+  border: 1px solid black;
+  border-radius: 14px;
+  text-transform: uppercase;
+}
+
+.movie-detail-name .release-date,
+.movie-detail-name .duration {
+  font-size: 13px;
+  position: relative;
+  top: 3px;
+  margin: 10px;
+}
+
+.cast-list-block .actor-image,
+.cast-list-block-list .actor-image {
+  background-image: url(../../assets/images/default-avatar.jpg);
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  border-radius: 25px;
+  margin: unset;
+}
+.cast-list-block .cast-title,
+.cast-list-block-list .cast-title {
+  font-size: 13px;
+  padding-bottom: 5px;
+}
+.grid-system .actor-name,
+.cast-list-block .actor-name {
+  padding-top: 5px;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+  font-weight: normal;
+}
+
+.cast-list-block-list .grid-system {
+  width: 25%;
+  float: left;
+}
+.filters-block {
+  height: 65px;
+}
+.show-time-app.black .filters-block {
+  border-bottom: 1px solid #151515;
+}
+.show-time-app.white .filters-block {
+  border-bottom: 1px solid #cfd4db;
+  box-shadow: 1px 2px 5px -2px #cfd4db;
+}
+
+.movie-detail-name {
+  margin-top: 15px;
+}
+.filter-by-date {
+  width: 50%;
+  float: left;
+  padding-left: 50px;
+}
+.filter-by-others {
+  width: 50%;
+  float: right;
+}
+.scrolling-dates .date-list {
+  width: 60px;
+  height: 50px;
+  margin: 7px;
+  margin-left: 6px;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+.scrolling-dates .date-list .date {
+  font-size: 16px;
+}
+.scrolling-dates .date-list .day {
+  font-size: 12px;
+}
+.scrolling-dates .date-list .day,
+.scrolling-dates .date-list .date {
+  text-align: center;
+}
+.dates-block {
+  width: 65%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.dates-block::-webkit-scrollbar {
+  display: none;
+}
+.arrow-align-middle {
+  margin: auto 0;
+}
+.mg-lft-20 {
+  margin-left: 20px;
+}
+.mg-rt-15 {
+  margin-right: 15px;
+}
+
+.date-list.active {
+  background: #0378ff;
+  color: white;
+}
+.fa {
+  cursor: pointer;
+}
+.filter-by-others .movie-screen {
+  display: flex;
+  width: 20%;
+  margin-top: 10px;
+  float: left;
+  cursor: pointer;
+  position: relative;
+  float: left;
+  padding: 15px;
+  border-left: 1px solid #eceef1;
+  top: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+.dropdown-ul {
+  list-style: none;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  outline: 0;
+  top: 90%;
+  left: 7%;
+  margin: 0;
+  padding: 0;
+  min-width: 101.5%;
+  white-space: nowrap;
+  text-shadow: none;
+  text-align: left;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(39, 41, 43, 0.15);
+  box-shadow: 0 2px 4px 0 rgba(39, 41, 43, 0.15);
+  border: 1px solid rgba(39, 41, 43, 0.15);
+  border-radius: 0 0 0.2857rem 0.2857rem;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  z-index: 100;
+}
+
+.movie-screen:hover .dropdown-ul,
+.dropdown-ul:hover {
+  opacity: 1;
+  visibility: visible;
+}
+.show-time-app.black .dropdown-ul {
+  background: black;
+  border: 1px solid #4c4c4c;
+}
+.show-time-app.white .dropdown-ul {
+  background: white;
+  border: 1px solid #cfd4db;
+}
+.dropdown-ul li:first-child {
+  margin: 10px 0px 0px 0px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.dropdown-ul li {
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 0px 0px 10px 0px;
+}
+.show-time-app.black .dropdown-ul li:hover {
+  color: #ea3c68;
+}
+.show-time-app.white .dropdown-ul li:hover {
+  color: #ea3c68;
+}
