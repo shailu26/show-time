@@ -3,6 +3,8 @@ import axios from '../../services/request/axios'
 import './bookMovie.scss';
 import jwt from 'jsonwebtoken'
 import * as $ from 'jquery';
+import Modal from '../modal/modal';
+import bicycle from '../../assets/images/bicycle.svg'
 class BookMovie extends Component {
     static days = [
         'Sun',
@@ -81,7 +83,8 @@ class BookMovie extends Component {
             }
         ],
         regionToggle: false,
-        selectedRegion: ''
+        selectedRegion: '',
+        showModal: false
     }
 
     componentWillMount() {
@@ -186,7 +189,9 @@ class BookMovie extends Component {
                 .regionList
                 .forEach(list => {
                     if (list.active) {
-                        text.push(text.length? ` ${list.name}`: list.name);
+                        text.push(text.length
+                            ? ` ${list.name}`
+                            : list.name);
                     }
                 })
             return text.join();
@@ -195,7 +200,12 @@ class BookMovie extends Component {
         }
     }
 
+    handleModal = (value) => {
+        this.setState({showModal: value});
+    }
+
     render() {
+        const listOfTen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         return (
             <div className="book-movie-container">
                 <div className="book-movie-box">
@@ -218,7 +228,7 @@ class BookMovie extends Component {
                                 <span className="duration">
                                     <i className="fa fa-clock-o" aria-hidden="true"></i>
                                     <span>
-                                        1h 29m</span>
+                                        &nbsp; 1h 29m</span>
                                 </span>
                             </div>
                         </div>
@@ -384,7 +394,7 @@ class BookMovie extends Component {
                         <div className="theatre-timings-block">
                             <div className="timing-list">
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">11:40AM</div>
                                         </div>
@@ -549,6 +559,30 @@ class BookMovie extends Component {
                         </div>
                     </div>
 
+                </div>
+                <div className="modal-box">
+                    <Modal show={this.state.showModal} handleClose={() => this.handleModal(false)}>
+                        <div className="seat-book-modal">
+                            <div className="modal-title">
+                                Select Number of Seats ?
+                            </div>
+                            <div className="modal-content">
+                                <div className="text-center">
+                                    <img src={bicycle} className="selected-img" alt="selected text"/>
+                                </div>
+                                <div className="display-flex seat-block">
+                                    {
+                                        listOfTen.map((number, index) => {
+                                            console.log('.....')
+                                            return (<div className="seat-number" key={index}>
+                                                {index + 1}
+                                            </div>)
+                                        })
+                                    }    
+                                </div>
+                            </div>
+                        </div>
+                    </Modal>
                 </div>
             </div>
         )
