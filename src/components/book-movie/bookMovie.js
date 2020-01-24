@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from '../../services/request/axios'
-import './bookMovie.css';
+import './bookMovie.scss';
 import jwt from 'jsonwebtoken'
 import * as $ from 'jquery';
 class BookMovie extends Component {
@@ -44,15 +44,70 @@ class BookMovie extends Component {
                 date: new Date().setDate(new Date().getDate() + 6),
                 active: false
             }
-        ]
+        ],
+        languageList: {
+            active: 'Hindi - 2D',
+            list: [
+                {
+                    id: 1,
+                    name: 'English'
+                }, {
+                    id: 2,
+                    name: 'Hindi - 3D'
+                }, {
+                    id: 3,
+                    name: 'Hindi - 2D'
+                }
+            ]
+        },
+        languageToggle: false,
+        regionList: [
+            {
+                id: 1,
+                name: 'Thane',
+                active: false
+            }, {
+                id: 2,
+                name: 'Mumbai South Central',
+                active: false
+            }, {
+                id: 3,
+                name: 'Navi Mumbai',
+                active: false
+            }, {
+                id: 4,
+                name: 'kalyan',
+                active: false
+            }
+        ],
+        regionToggle: false,
+        selectedRegion: ''
+    }
+
+    componentWillMount() {
+        let text = this.getRegionText();
+        this.setState({selectedRegion: text});
     }
 
     componentDidMount() {
-        console.log(BookMovie.days);
+        $(document).mouseup((e) => {
+            let movieScreen = $(".movie-screen");
+
+            // if the target of the click isn't the container nor a descendant of the
+            // container
+            if (!movieScreen.is(e.target) && movieScreen.has(e.target).length === 0) {
+                this.setState({languageToggle: false});
+            }
+            let regionDropdown = $(".region-box");
+            if (!regionDropdown.is(e.target) && regionDropdown.has(e.target).length === 0) {
+                this.setState({regionToggle: false});
+            }
+
+        });
     }
 
     getDayName = (data) => {
-        if (data.active) {
+        if (new Date(data.date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)) {
             return 'Today';
         } else {
             let d = new Date(data.date);
@@ -60,16 +115,87 @@ class BookMovie extends Component {
         }
     }
     scrollToDate = (arrow) => {
-        let scrollArrow = arrow === 'left'? "-=": "+=";
+        let scrollArrow = arrow === 'left'
+            ? "-="
+            : "+=";
         $(() => {
             $('.dates-block').animate({
-                scrollLeft: scrollArrow+110
+                scrollLeft: scrollArrow + 110
             }, "smooth");
         });
     }
+    changeSelectedDate = (list) => {
+        let dateList = this.state.dateList;
+        dateList.forEach(data => {
+            data.active = data.id === list.id;
+        });
+        this.setState({dateList});
+    }
+
+    changeLanguage = (list) => {
+        let newState = Object.assign({}, this.state)
+        newState.languageList.active = list.name
+        this.setState(newState);
+        this.toggleLanguage();
+
+    }
+
+    changeRegions = (list) => {
+        let data = this.state.regionList;
+        let text = '';
+        data.forEach(listObj => {
+            if (listObj.id === list.id) {
+                listObj.active = !listObj.active;
+            }
+        })
+        console.log(data);
+        this.setState({regionList: data});
+        text = this.getRegionText();
+        console.log(text);
+        this.setState({selectedRegion: text});
+        console.log(this.state)
+    }
+
+    toggleLanguage = () => {
+        this.setState({
+            languageToggle: !this.state.languageToggle
+        })
+        if (this.state.regionToggle) {
+            this.toggleRegion();
+        }
+    }
+    toggleRegion = () => {
+        this.setState({
+            regionToggle: !this.state.regionToggle
+        })
+        if (this.state.languageToggle) {
+            this.toggleLanguage();
+        }
+    }
+
+    getRegionText = () => {
+        let index = this
+            .state
+            .regionList
+            .findIndex(list => list.active === true);
+        console.log(index);
+        if (index > -1) {
+            let text = [];
+            this
+                .state
+                .regionList
+                .forEach(list => {
+                    if (list.active) {
+                        text.push(text.length? ` ${list.name}`: list.name);
+                    }
+                })
+            return text.join();
+        } else {
+            return 'Filter Sub Regions'
+        }
+    }
 
     render() {
-
         return (
             <div className="book-movie-container">
                 <div className="book-movie-box">
@@ -150,7 +276,8 @@ class BookMovie extends Component {
                                                 className={list.active
                                                 ? 'date-list active'
                                                 : 'date-list'}
-                                                key={list.id}>
+                                                key={list.id}
+                                                onClick={() => this.changeSelectedDate(list)}>
                                                 <div className="date">
                                                     {new Date(list.date).getDate()}
                                                 </div>
@@ -170,16 +297,258 @@ class BookMovie extends Component {
 
                     </div>
                     <div className="filter-by-others">
-                        <div className="movie-screen">
-                            <div className="width80 screen-print">Hindi - 2D</div><i className="fa fa-angle-down"></i>  
-                            <ul className="list-none dropdown-ul">
-                                <li>
-                                    Hindi - 3D
-                                </li>
-                                <li>English</li>
-                            </ul> 
+                        <div className="movie-screen" onClick={this.toggleLanguage}>
+                            <div className="width80 screen-print">{this.state.languageList.active}</div>
+                            <i
+                                className={`fa fa-angle-down book-movie ${this.state.languageToggle
+                                ? 'rotate'
+                                : ''}`}></i>
+                            <ul
+                                className={this.state.languageToggle
+                                ? "list-none dropdown-ul active"
+                                : "list-none dropdown-ul"}>
+                                {this
+                                    .state
+                                    .languageList
+                                    .list
+                                    .map(list => {
+                                        if (list && list.name !== this.state.languageList.active) {
+                                            return <li key={list.id} onClick={() => this.changeLanguage(list)}>{list.name}</li>
+                                        }
+                                    })}
+                            </ul>
+                        </div>
+                        <div className="region-box">
+                            <div
+                                className="width80 region-box-title screen-print"
+                                onClick={this.toggleRegion}>{this.state.selectedRegion}
+                            </div>
+                            <i
+                                className={`fa fa-angle-down book-movie ${this.state.regionToggle
+                                ? 'rotate'
+                                : ''}`}></i>
+                            <ul
+                                className={this.state.regionToggle
+                                ? "list-none dropdown-ul active"
+                                : "list-none dropdown-ul"}>
+                                {this
+                                    .state
+                                    .regionList
+                                    .map(list => {
+                                        return <li key={list.id} onClick={() => this.changeRegions(list)}>
+                                            <input
+                                                className="cursor-pointer"
+                                                type="checkbox"
+                                                checked={list.active}
+                                                value={list.name}/>
+                                            <span className="mg-left-5">{list.name}</span>
+                                        </li>
+                                    })}
+                            </ul>
                         </div>
                     </div>
+                </div>
+                {this
+                    .state
+                    .selectedRegion
+                    .toLowerCase() === 'Filter Sub Regions'.toLowerCase()
+                    ? null
+                    : <div className="selected-regions">
+                        {this
+                            .state
+                            .regionList
+                            .map(regionObj => {
+                                if (regionObj.active) {
+                                    return <div
+                                        key={regionObj.id}
+                                        className="region-name"
+                                        onClick={() => this.changeRegions(regionObj)}>
+                                        {regionObj.name}
+                                        <i className="fa fa-times-circle region-close"></i>
+                                    </div>
+                                }
+                            })}
+                    </div>
+}
+                <div className="theatre-list-box">
+
+                    <div className="theatre-list">
+                        <div className="theatre-name-block">
+                            <div className="text-center">
+                                <i className="fa fa-heart clr-red"></i>
+                            </div>
+                            <div className="theatre-name">
+                                Carnival: Huma, Kanjurmarg
+                            </div>
+                        </div>
+                        <div className="theatre-timings-block">
+                            <div className="timing-list">
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">11:40AM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">01:00PM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">4:00PM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="theatre-list">
+                        <div className="theatre-name-block">
+                            <div className="text-center">
+                                <i className="fa fa-heart clr-red"></i>
+                            </div>
+                            <div className="theatre-name">
+                                Balaji Movieplex: Kopar Khairane
+                            </div>
+                        </div>
+                        <div className="theatre-timings-block">
+                            <div className="timing-list">
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">12:15PM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">01:15PM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">3:00PM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">5:45PM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">7:00PM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="theatre-list">
+                        <div className="theatre-name-block">
+                            <div className="text-center">
+                                <i className="fa fa-heart"></i>
+                            </div>
+                            <div className="theatre-name">
+                                INOX: Palm Beach Galleria Mall, Navi Mumbai
+                            </div>
+                        </div>
+                        <div className="theatre-timings-block">
+                            <div className="timing-list">
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">11:35AM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">12:15PM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">2:20PM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">5:10PM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">8:00PM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">10:10PM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+
+                                <div className="timing-container">
+                                    <div className="timing-pill">
+                                        <div className="timing-details">
+                                            <div className="timing-text">11:30PM</div>
+                                        </div>
+                                        <div className="timing-attribute"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         )

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from '../../services/request/axios'
-import './login.css';
+import './login.scss';
 import jwt from 'jsonwebtoken'
 import * as $ from 'jquery';
 // import {toast} from 'react-toastify';

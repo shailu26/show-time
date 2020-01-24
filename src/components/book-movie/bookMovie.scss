@@ -3,7 +3,7 @@
 }
 .book-movie-box {
   height: 17vh;
-  background: #ea3c68;
+  background: #ffde22;
   display: flex;
 }
 
@@ -73,6 +73,8 @@
 .cast-list-block-list .cast-title {
   font-size: 13px;
   padding-bottom: 5px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 .grid-system .actor-name,
 .cast-list-block .actor-name {
@@ -100,6 +102,13 @@
   box-shadow: 1px 2px 5px -2px #cfd4db;
 }
 
+.show-time-app.black .theatre-list {
+  border-bottom: 1px solid #151515;
+}
+.show-time-app.white .theatre-list {
+  border-bottom: 1px solid #cfd4db;
+}
+
 .movie-detail-name {
   margin-top: 15px;
 }
@@ -123,6 +132,7 @@
 }
 .scrolling-dates .date-list .date {
   font-size: 16px;
+  font-weight: bold;
 }
 .scrolling-dates .date-list .day {
   font-size: 12px;
@@ -151,13 +161,15 @@
 }
 
 .date-list.active {
-  background: #0378ff;
-  color: white;
+  background: #ffde22;
+  color: black;
 }
+
 .fa {
   cursor: pointer;
 }
-.filter-by-others .movie-screen {
+.filter-by-others .movie-screen,
+.region-box {
   display: flex;
   width: 20%;
   margin-top: 10px;
@@ -168,8 +180,11 @@
   padding: 15px;
   border-left: 1px solid #eceef1;
   top: 0;
-  font-size: inherit;
+  font-size: 14px;
   font-weight: inherit;
+}
+.region-box {
+  width: 30%;
 }
 .dropdown-ul {
   list-style: none;
@@ -194,8 +209,7 @@
   z-index: 100;
 }
 
-.movie-screen:hover .dropdown-ul,
-.dropdown-ul:hover {
+.dropdown-ul.active {
   opacity: 1;
   visibility: visible;
 }
@@ -211,17 +225,146 @@
   margin: 10px 0px 0px 0px;
   padding-left: 10px;
   padding-top: 5px;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 }
 .dropdown-ul li {
   padding-left: 10px;
   padding-top: 5px;
-  padding-bottom: 5px;
   margin: 0px 0px 10px 0px;
 }
 .show-time-app.black .dropdown-ul li:hover {
-  color: #ea3c68;
+  color: #ff8928;
 }
 .show-time-app.white .dropdown-ul li:hover {
-  color: #ea3c68;
+  color: #ff8928;
+}
+.fa-angle-down.book-movie.rotate {
+  transform: rotate(180deg);
+}
+.fa-angle-down.book-movie {
+  height: 18px;
+  transform: rotate(0deg);
+  transition: transform 0.5s;
+}
+
+.show-time-app.black .region-box,
+.show-time-app.black .movie-screen {
+  border-color: #2b2b2b;
+}
+.region-box-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selected-regions {
+  display: flex;
+  padding-left: 50px;
+  padding-top: 20px;
+}
+
+.region-name {
+  letter-spacing: 0.5px;
+  font-size: 12px;
+  border: 1px solid #9a9898;
+  border-radius: 25px;
+  padding: 5px 10px 5px 10px;
+  margin-right: 15px;
+  opacity: 0.8;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+i.fa.fa-times-circle.region-close {
+  margin-left: 6px;
+  font-size: 15px;
+  position: relative;
+  top: 1px;
+}
+.region-name:hover {
+  opacity: 1;
+  color: #ff8928;
+}
+.theatre-list-box {
+  padding: 0px 50px 20px 50px;
+  /* overflow: auto;
+  display: block;
+  height: calc(100vh - 35vh); */
+}
+.theatre-list {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  min-height: 120px;
+  margin-bottom: 20px;
+}
+
+.theatre-name-block {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  margin: auto 0;
+}
+.theatre-timings-block {
+  margin: auto 0;
+}
+.timing-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.timing-container {
+  margin: 8px;
+}
+.timing-pill {
+  cursor: pointer;
+  border: 1px solid #999;
+  padding: 4px;
+  border-radius: 4px;
+  width: 90px;
+  height: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+}
+.timing-pill:hover {
+  color: #ff8928;
+}
+.timing-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 2px;
+  height: 14px;
+  font-size: 13px;
+}
+.timing-text {
+  margin: 0 auto;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.theatre-name {
+  letter-spacing: 0.2px;
 }

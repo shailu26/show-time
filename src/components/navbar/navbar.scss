@@ -166,7 +166,7 @@
   .nav-item > div:not(.external).router-link-active,
   .nav-item > div:not(.external):hover {
     margin-bottom: -2px;
-    border-bottom: 2px solid #ea3c68;
+    border-bottom: 2px solid #ff8928;
   }
 }
 @media (min-width: 719px) {
@@ -177,7 +177,7 @@
 }
 .nav-links div.router-link-active,
 .nav-links div:hover {
-  color: #ea3c68;
+  color: #ff8928;
 }
 
 .navbar a,
@@ -230,7 +230,7 @@
 }
 .search-box input:focus {
   cursor: auto;
-  border-color: #ea3c68;
+  border-color: #ff8928;
 }
 @media (max-width: 719px) {
   .search-box {

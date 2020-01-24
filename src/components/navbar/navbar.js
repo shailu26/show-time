@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {withRouter, Link} from 'react-router-dom'
-import './navbar.css'
+import './navbar.scss'
 import logo from '../../assets/images/logo1.png';
 import * as Cookies from "js-cookie";
 

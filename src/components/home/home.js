@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // import {Redirect} from 'react-router-dom'; import {environment} from
 // '../../environment' import axios from '../../services/axios';
-import './home.css';
+import './home.scss';
 // import { toast } from 'react-toastify';
 import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'

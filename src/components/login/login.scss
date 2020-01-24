@@ -14,7 +14,7 @@
 .h1-ele {
   font-weight: bold;
   margin: 0;
-  color: #ea3c68;
+  color: #ff8928;
 }
 
 /* h2 {
@@ -35,7 +35,7 @@ p {
 
 .span-ele {
   font-size: 12px;
-  color: #ea3c68;
+  color: #ff8928;
   font-weight: bold;
 }
 
@@ -62,8 +62,8 @@ p {
 .ghost {
   cursor: pointer;
   border-radius: 5px;
-  border: 1px solid #ea3c68;
-  background-color: #ea3c68;
+  border: 1px solid #ff8928;
+  background-color: #ff8928;
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
@@ -188,8 +188,8 @@ button.ghost {
 
 .overlay {
   background: #ff416c;
-  background: -webkit-linear-gradient(to right, #ff4b2b, #ea3c68);
-  background: linear-gradient(to right, #ff4b2b, #ea3c68);
+  background: -webkit-linear-gradient(to right, #ff4b2b, #ff8928);
+  background: linear-gradient(to right, #ff4b2b, #ff8928);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -252,7 +252,7 @@ button.ghost {
   width: 40px;
 }
 .social-icons:hover {
-  background: #ea3c68;
+  background: #ff8928;
   color: black;
   transition: all 0.2s;
   cursor: pointer;

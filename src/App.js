@@ -1,5 +1,5 @@
 import React, {lazy, Suspense} from 'react';
-import './App.css';
+import './App.scss';
 import * as Cookies from "js-cookie";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import requireAuth from './services/authentication'

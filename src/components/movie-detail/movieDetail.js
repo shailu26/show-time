@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './movieDetail.css';
+import './movieDetail.scss';
 import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'
 
@@ -38,7 +38,7 @@ class MovieDetail extends Component {
                     <div className="movie-details">
                         <div className="movie-block">
                             <div className="movie-name">Man of steel
-                                <span onClick={this.bookMovie} className="book-tickets-btn btn glow">Book</span>
+                                <span onClick={this.bookMovie} className="book-tickets-btn btn btn-glow">Book</span>
                             </div>
                             <div className="breadcrumbs">
                                 Sci-fi / English / 2016 / 1h 59m
@@ -56,13 +56,13 @@ class MovieDetail extends Component {
                                 </div>
                             </div>
                             <div className="release-date-block">
-                                <div className="box glow">
+                                <div className="box bckd-glow">
                                     <div className="date-day">30</div>
                                     <div className="divider"></div>
                                     <div className="date-month-year">Nov &nbsp; 2016</div>
                                 </div>
                             </div>
-                            <div className="play-trailer-block glow">
+                            <div className="play-trailer-block bckd-glow">
                                 <span className="play-box">
                                     <i className="fa fa-play clr-white" aria-hidden="true"></i>
                                 </span>
