@@ -1,3 +1,5 @@
+@import '../../assets/stylesheets/variables';
+
 .modal {
     position: fixed;
     top: 0;
@@ -19,11 +21,12 @@
 }
 
 .show-time-app.black .modal-main {
-    background: #ffde22;
+    background: #252222;
+    color: white;
 }
 
 .show-time-app.white .modal-main {
-    background: #EDE574;
+    background: white;
 }
 
 .display-block {

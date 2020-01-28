@@ -4,7 +4,11 @@ import './bookMovie.scss';
 import jwt from 'jsonwebtoken'
 import * as $ from 'jquery';
 import Modal from '../modal/modal';
-import bicycle from '../../assets/images/bicycle.svg'
+import bicycle from '../../assets/images/bicycle.svg';
+import motorcycle from '../../assets/images/motorcycle.svg';
+import ricksaw from '../../assets/images/ricksaw.svg';
+import taxi from '../../assets/images/taxi.svg';
+
 class BookMovie extends Component {
     static days = [
         'Sun',
@@ -84,7 +88,23 @@ class BookMovie extends Component {
         ],
         regionToggle: false,
         selectedRegion: '',
-        showModal: false
+        showModal: false,
+        listOfTen: [
+            {
+                list: 1,
+                active: false
+            }, {
+                list: 2,
+                active: false
+            }, {
+                list: 3,
+                active: false
+            }, {
+                list: 4,
+                active: false
+            }
+        ],
+        showImage: 1
     }
 
     componentWillMount() {
@@ -205,7 +225,6 @@ class BookMovie extends Component {
     }
 
     render() {
-        const listOfTen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         return (
             <div className="book-movie-container">
                 <div className="book-movie-box">
@@ -568,17 +587,29 @@ class BookMovie extends Component {
                             </div>
                             <div className="modal-content">
                                 <div className="text-center">
-                                    <img src={bicycle} className="selected-img" alt="selected text"/>
+                                    {this.state.showImage === 1 && <img src={bicycle} className="selected-img" alt="selected text"/>}
+                                    {this.state.showImage === 2 && <img src={motorcycle} className="selected-img" alt="selected text"/>}
+                                    {this.state.showImage === 3 && <img src={ricksaw} className="selected-img" alt="selected text"/>}
+                                    {this.state.showImage === 4 && <img src={taxi} className="selected-img" alt="selected text"/>}
                                 </div>
-                                <div className="display-flex seat-block">
-                                    {
-                                        listOfTen.map((number, index) => {
+
+                                <div className="seat-block">
+                                    {this
+                                        .state
+                                        .listOfTen
+                                        .map((number, index) => {
                                             console.log('.....')
-                                            return (<div className="seat-number" key={index}>
-                                                {index + 1}
-                                            </div>)
+                                            return (
+                                                <div
+                                                    className="seat-number"
+                                                    key={index}
+                                                    onMouseEnter={() => this.setState({showImage: number.list})}
+                                                    >
+                                                    {index + 1}
+                                                </div>
+                                            )
                                         })
-                                    }    
+}
                                 </div>
                             </div>
                         </div>

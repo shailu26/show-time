@@ -6,6 +6,8 @@
   overflow: hidden;
   z-index: 0;
 } */
+@import '../../assets/stylesheets/variables';
+
 .movie-background {
   background: url('http://henrycavill.org/images/Films/2013-Man-of-Steel/posters/3-Walmart-Superman-a.jpg');
   background-size: cover;
@@ -22,18 +24,22 @@
   transition: all 0.5s ease;
   border-radius: 5px;
 }
+
 .movie-detail-container {
   display: flex;
   margin: -182px auto 0;
   position: relative;
 }
+
 .movie-block {
   padding-bottom: 20px;
 }
+
 .movie-details,
 .movie-poster {
   height: calc(100vh - 6.6rem);
 }
+
 .movie-poster {
   width: 40%;
   padding: 40px;
@@ -46,6 +52,7 @@
   padding-top: 15px;
   text-transform: capitalize;
 }
+
 .movie-name {
   font-size: 2em;
   margin-top: 1rem;
@@ -54,6 +61,7 @@
   margin-bottom: 10px;
   color: white;
 }
+
 .breadcrumbs {
   font-size: 14px;
   color: #ff8928;
@@ -76,11 +84,13 @@
 .rating-number {
   text-shadow: 1px 1px 4px #fc6;
 }
+
 .rating-number {
   font-size: 20px;
   color: #f9cb65;
   font-weight: bold;
 }
+
 .other-details {
   width: 75%;
   padding-top: 18px;
@@ -90,25 +100,29 @@
   letter-spacing: 1px;
   color: white;
 }
+
 .release-date-block {
   position: absolute;
   left: 3%;
   top: 16%;
 }
+
 .box {
   width: 100px;
   float: left;
   height: 125px;
-  background: #ffde22;
+  background: $background-color;
   color: white;
   text-align: center;
   border-radius: 2px;
 }
+
 .date-day {
   padding-top: 5px;
   font-size: 45px;
   font-weight: bold;
 }
+
 .divider {
   width: 15px;
   height: 2px;
@@ -116,10 +130,12 @@
   background: white;
   margin: 0 auto;
 }
+
 .date-month-year {
   padding-top: 15px;
   font-weight: bold;
 }
+
 .play-trailer-block {
   border-radius: 2px;
   position: absolute;
@@ -127,8 +143,9 @@
   left: 35.4%;
   width: 50px;
   height: 50px;
-  background: #ffde22;
+  background: $background-color;
 }
+
 .play-box {
   width: 100%;
   display: block;
@@ -138,18 +155,21 @@
   font-size: 33px;
   cursor: pointer;
 }
+
 .title {
   font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
   padding-bottom: 15px;
 }
+
 .actors-list {
   display: grid;
   grid-template-columns: 16% 16% 16% 16% 16% 16%;
   grid-gap: 5px;
   text-align: center;
 }
+
 .actor-image {
   background-image: url(../../assets/images/default-avatar.jpg);
   width: 50px;
@@ -158,16 +178,19 @@
   margin: 0 auto;
   border-radius: 25px;
 }
+
 .other-actors .actor-name {
   position: relative;
   top: -65px;
   font-weight: bold;
   font-size: 23px;
 }
+
 .other-actors .actor-image {
   width: 80px;
   height: 80px;
 }
+
 .actor-name {
   padding-top: 10px;
   font-weight: bold;
@@ -176,13 +199,16 @@
 .show-time-app.black .other-actors .actor-name {
   color: black;
 }
+
 .synopsis {
   padding-bottom: 20px;
 }
+
 .synopsis-text {
   letter-spacing: 0.5px;
   font-weight: bold;
 }
+
 .video-list {
   display: flex;
   flex-wrap: wrap;
@@ -191,12 +217,15 @@
   margin-right: auto;
   justify-content: center;
 }
+
 .show-time-app.black .video-list {
   background: black;
 }
+
 .show-time-app.white .video-list {
   background: white;
 }
+
 .video-list .list {
   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
   /* width: 100%; */
@@ -210,6 +239,7 @@
   width: 100%;
   height: 145px;
 }
+
 .movie-pictures {
   width: 100%;
   height: 100%;
@@ -220,26 +250,33 @@
   text-align: center;
   background-position: bottom;
 }
+
 .movie-pictures.list-image-1 {
   background-image: url(https://cdn.collider.com/wp-content/uploads/2013/05/man-of-steel-henry-cavill-superman.jpg);
 }
+
 .movie-pictures.list-image-2 {
   background-image: url(https://wallpaperaccess.com/full/140257.jpg);
 }
+
 .movie-pictures.list-image-3 {
   background-image: url(https://images6.alphacoders.com/337/thumb-1920-337242.jpg);
 }
+
 .movie-pictures.list-image-4 {
   background-image: url(https://wallpaperaccess.com/full/140257.jpg);
 }
+
 .movie-pictures.list-image-5 {
   background-image: url(https://wallpaperaccess.com/full/140257.jpg);
 }
+
 .show-time-app.white .video-list .list .movie-pictures {
   border: 1px solid #cfd4db;
   box-shadow: 0px 6px 18px #cfd4db;
   transition: all 0.5s;
 }
+
 .show-time-app.black .video-list .list .movie-pictures {
   border: 1px solid #151515;
   box-shadow: 0px 6px 18px #151515;
@@ -253,6 +290,7 @@
   position: relative;
   top: 40%;
 }
+
 .book-tickets-btn {
   float: right;
   margin-right: 40px;
@@ -261,6 +299,7 @@
   background: #ff8928;
   color: white;
 }
+
 .banner-synopsis {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -269,6 +308,7 @@
   overflow: hidden;
   z-index: 0;
 }
+
 .cover-image {
   background-image: url('http://henrycavill.org/images/Films/2013-Man-of-Steel/posters/3-Walmart-Superman-a.jpg');
   background-repeat: no-repeat;
@@ -285,6 +325,7 @@
   -webkit-filter: blur(20px);
   filter: blur(20px);
 }
+
 .banner-overlay {
   position: absolute;
   z-index: 2;
@@ -293,11 +334,13 @@
   width: 100%;
   height: 100%;
 }
+
 .allow-scroll {
   overflow: auto;
   height: 60vh;
   padding-top: 15px;
 }
+
 .movie-name,
 .breadcrumbs,
 .casting,
@@ -308,6 +351,7 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops
@@ -339,18 +383,22 @@
   .movie-detail-container {
     display: block;
   }
+
   .movie-poster {
     width: 100%;
     padding-left: 42px;
     padding-bottom: 0;
   }
+
   .movie-details {
     width: 100%;
   }
+
   .play-trailer-block {
     top: 40%;
     left: 91%;
   }
+
   .allow-scroll {
     height: unset;
   }
@@ -365,9 +413,11 @@
   .play-trailer-block {
     left: 93.4%;
   }
+
   .allow-scroll {
     height: unset;
   }
+
   .book-tickets-btn {
     margin-right: 18px;
   }
@@ -382,37 +432,47 @@
   .movie-detail-container {
     display: block;
   }
+
   .movie-poster {
     width: 100%;
     padding-left: 42px;
     padding-bottom: 0;
   }
+
   .release-date-block {
     left: 1%;
     top: 8%;
   }
+
   .movie-details {
     width: 100%;
   }
+
   .play-trailer-block {
     top: 35%;
     left: 81%;
   }
+
   .allow-scroll {
     height: unset;
   }
+
   .show-time-app.black .allow-scroll {
     background: black;
   }
+
   .show-time-app.white .movie-name {
     color: black;
   }
+
   .show-time-app.white .other-details {
     color: black;
   }
+
   .ratings-block {
     width: 100%;
   }
+
   .book-tickets-btn {
     margin-right: 18px;
   }
@@ -427,40 +487,51 @@
   .movie-detail-container {
     display: block;
   }
+
   .movie-poster {
     width: 100%;
     padding-left: 42px;
     padding-bottom: 0;
   }
+
   .release-date-block {
     left: 1%;
     top: 8%;
   }
+
   .movie-details {
     width: 100%;
   }
+
   .play-trailer-block {
     top: 35%;
     left: 81%;
   }
+
   .allow-scroll {
     height: unset;
   }
+
   .show-time-app.black .allow-scroll {
     background: black;
   }
+
   .show-time-app.white .movie-name {
     color: black;
   }
+
   .show-time-app.white .other-details {
     color: black;
   }
+
   .ratings-block {
     width: 100%;
   }
+
   .actors-list {
     grid-template-columns: 32% 32% 32%;
   }
+
   .book-tickets-btn {
     margin-right: 18px;
   }
