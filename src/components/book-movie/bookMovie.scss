@@ -432,8 +432,10 @@ i.fa.fa-times-circle.region-close {
 
 }
 
-.seat-number:hover {
+.seat-number:hover,
+.seat-number.selected {
   background: $background-color;
+  color: black;
 }
 
 .show-time-app.black .seat-number:hover {
@@ -443,4 +445,21 @@ i.fa.fa-times-circle.region-close {
 .seat-block {
   justify-content: center;
   text-align: center;
+  padding: 15px 30px;
+}
+
+.select-seats-btn {
+  background: $background-color;
+  padding: 20px;
+  font-size: 20px;
+  margin: 20px 5px 5px;
+  cursor: pointer;
+  color: black;
+  letter-spacing: 0.5px;
+  border-radius: 3px;
+
+}
+
+.seat-image-block {
+  padding: 15px 30px;
 }

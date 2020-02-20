@@ -42,3 +42,16 @@
     padding: 20px;
     font-size: 25px;
 }
+
+.close-modal {
+    float: right;
+}
+
+.close-modal {
+    .fa-times {
+        position: relative;
+        right: 10px;
+        top: 5px;
+        font-size: 23px;
+    }
+}

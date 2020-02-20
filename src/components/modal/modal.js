@@ -9,8 +9,11 @@ class Modal extends Component {
                 ? "modal display-block"
                 : "modal display-none"}>
                 <section className="modal-main">
+                    <div className="close-modal">
+                        <i onClick={this.props.handleClose} className="fa fa-times fa-2x"></i>
+                    </div>
                     {this.props.children}
-                    <button onClick={this.props.handleClose}>close</button>
+                    
                 </section>
             </div>
         );

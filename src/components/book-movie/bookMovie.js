@@ -104,7 +104,8 @@ class BookMovie extends Component {
                 active: false
             }
         ],
-        showImage: 1
+        showImage: 1,
+        selectedSeat: 1
     }
 
     componentWillMount() {
@@ -218,6 +219,9 @@ class BookMovie extends Component {
         } else {
             return 'Filter Sub Regions'
         }
+    }
+    selectSeat = (listNumber) => {
+        this.setState({selectedSeat: listNumber});
     }
 
     handleModal = (value) => {
@@ -422,7 +426,7 @@ class BookMovie extends Component {
                                 </div>
 
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">01:00PM</div>
                                         </div>
@@ -431,7 +435,7 @@ class BookMovie extends Component {
                                 </div>
 
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">4:00PM</div>
                                         </div>
@@ -454,7 +458,7 @@ class BookMovie extends Component {
                         <div className="theatre-timings-block">
                             <div className="timing-list">
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">12:15PM</div>
                                         </div>
@@ -463,7 +467,7 @@ class BookMovie extends Component {
                                 </div>
 
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">01:15PM</div>
                                         </div>
@@ -472,7 +476,7 @@ class BookMovie extends Component {
                                 </div>
 
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">3:00PM</div>
                                         </div>
@@ -481,7 +485,7 @@ class BookMovie extends Component {
                                 </div>
 
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">5:45PM</div>
                                         </div>
@@ -490,7 +494,7 @@ class BookMovie extends Component {
                                 </div>
 
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">7:00PM</div>
                                         </div>
@@ -513,7 +517,7 @@ class BookMovie extends Component {
                         <div className="theatre-timings-block">
                             <div className="timing-list">
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">11:35AM</div>
                                         </div>
@@ -522,7 +526,7 @@ class BookMovie extends Component {
                                 </div>
 
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">12:15PM</div>
                                         </div>
@@ -531,7 +535,7 @@ class BookMovie extends Component {
                                 </div>
 
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">2:20PM</div>
                                         </div>
@@ -540,7 +544,7 @@ class BookMovie extends Component {
                                 </div>
 
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">5:10PM</div>
                                         </div>
@@ -549,7 +553,7 @@ class BookMovie extends Component {
                                 </div>
 
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">8:00PM</div>
                                         </div>
@@ -558,7 +562,7 @@ class BookMovie extends Component {
                                 </div>
 
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">10:10PM</div>
                                         </div>
@@ -567,7 +571,7 @@ class BookMovie extends Component {
                                 </div>
 
                                 <div className="timing-container">
-                                    <div className="timing-pill">
+                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
                                         <div className="timing-details">
                                             <div className="timing-text">11:30PM</div>
                                         </div>
@@ -586,11 +590,11 @@ class BookMovie extends Component {
                                 Select Number of Seats ?
                             </div>
                             <div className="modal-content">
-                                <div className="text-center">
+                                <div className="text-center seat-image-block">
                                     {this.state.showImage === 1 && <img src={bicycle} className="selected-img" alt="selected text"/>}
                                     {this.state.showImage === 2 && <img src={motorcycle} className="selected-img" alt="selected text"/>}
-                                    {this.state.showImage === 3 && <img src={ricksaw} className="selected-img" alt="selected text"/>}
-                                    {this.state.showImage === 4 && <img src={taxi} className="selected-img" alt="selected text"/>}
+                                    {this.state.showImage === 3  && <img src={ricksaw} className="selected-img" alt="selected text"/>}
+                                    {this.state.showImage === 4  && <img src={taxi} className="selected-img" alt="selected text"/>}
                                 </div>
 
                                 <div className="seat-block">
@@ -598,18 +602,21 @@ class BookMovie extends Component {
                                         .state
                                         .listOfTen
                                         .map((number, index) => {
-                                            console.log('.....')
                                             return (
                                                 <div
-                                                    className="seat-number"
+                                                    className={`${this.state.selectedSeat === number.list ? 'seat-number selected':'seat-number'}`}
                                                     key={index}
                                                     onMouseEnter={() => this.setState({showImage: number.list})}
-                                                    >
+                                                    onMouseOut = {() => this.setState({showImage: this.state.selectedSeat})}
+                                                    onClick={() => this.selectSeat(number.list)}>
                                                     {index + 1}
                                                 </div>
                                             )
                                         })
 }
+                                </div>
+                                <div className="select-seats-btn text-center">
+                                    Select Seats
                                 </div>
                             </div>
                         </div>
