@@ -8,7 +8,7 @@ import bicycle from '../../assets/images/bicycle.svg';
 import motorcycle from '../../assets/images/motorcycle.svg';
 import ricksaw from '../../assets/images/ricksaw.svg';
 import taxi from '../../assets/images/taxi.svg';
-
+import {ShowTimeAppContext} from '../../react-context/show-time-app-context'
 class BookMovie extends Component {
     static days = [
         'Sun',
@@ -220,408 +220,425 @@ class BookMovie extends Component {
             return 'Filter Sub Regions'
         }
     }
-    selectSeat = (listNumber) => {
-        this.setState({selectedSeat: listNumber});
+    selectSeat = (context, listNumber) => {
+				this.setState({selectedSeat: listNumber});
+				console.log(context);
+				context.state.seatData.setSelectedSeat(listNumber);
     }
 
-    handleModal = (value) => {
-        this.setState({showModal: value});
+    handleModal = (context, value) => {
+				this.setState({showModal: value});
+				// if modal is closed then set selected seat Value to 1
+				if (!value) {
+					context.state.seatData.setSelectedSeat(1);
+					this.setState({selectedSeat: 1});
+				}
     }
 
     render() {
         return (
             <div className="book-movie-container">
-                <div className="book-movie-box">
-                    <div className="movies-details-box">
-                        <div className="movie-detail-name">
-                            <div className="name">
-                                <span>Man of steel</span>
-                            </div>
-                            <div className="other">
-                                <span className="categories">U/A</span>
-                                <span className="tags">
-                                    <span>SCI-Fi</span>
-                                </span>
-                                <span className="tags">
-                                    <span>Adventure</span>
-                                </span>
-                                <span className="release-date">
-                                    Jan 10, 2020
-                                </span>
-                                <span className="duration">
-                                    <i className="fa fa-clock-o" aria-hidden="true"></i>
-                                    <span>
-                                        &nbsp; 1h 29m</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="movies-cast-box">
-                        <div className="cast-list-block">
-                            <div>
-                                <div className="cast-title">
-                                    Director
+                <ShowTimeAppContext.Consumer>
+                    {(context) => (
+                        <React.Fragment>
+                            <div className="book-movie-box">
+                                <div className="movies-details-box">
+                                    <div className="movie-detail-name">
+                                        <div className="name">
+                                            <span>Man of steel</span>
+                                        </div>
+                                        <div className="other">
+                                            <span className="categories">U/A</span>
+                                            <span className="tags">
+                                                <span>SCI-Fi</span>
+                                            </span>
+                                            <span className="tags">
+                                                <span>Adventure</span>
+                                            </span>
+                                            <span className="release-date">
+                                                Jan 10, 2020
+                                            </span>
+                                            <span className="duration">
+                                                <i className="fa fa-clock-o" aria-hidden="true"></i>
+                                                <span>
+                                                    &nbsp; 1h 29m</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div className="actor-image"></div>
-                                    <div className="actor-name">Zack Snyder</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="cast-list-block-list">
-                            <div>
-                                <div className="cast-title">
-                                    Cast & Crew
-                                </div>
-                                <div className="grid-system">
-                                    <div className="actor-image"></div>
-                                    <div className="actor-name">Henry Cavill</div>
-                                </div>
-                                <div className="grid-system">
-                                    <div className="actor-image"></div>
-                                    <div className="actor-name">Amy Adams</div>
-                                </div>
-                                <div className="grid-system">
-                                    <div className="actor-image"></div>
-                                    <div className="actor-name">Michael Shannon</div>
-                                </div>
-                                <div className="grid-system">
-                                    <div className="actor-image"></div>
-                                    <div className="actor-name">Kevin Costner</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="filters-block">
-                    <div className="filter-by-date display-flex">
-                        <i
-                            className="fa fa-angle-left mg-rt-15 arrow-align-middle font-45"
-                            onClick={() => this.scrollToDate('left')}></i>
-                        <div className="dates-block display-flex">
-                            <div className="scrolling-dates display-flex" id="scrolling-dates">
-                                {this
-                                    .state
-                                    .dateList
-                                    .map(list => {
-                                        return (
-                                            <div
-                                                className={list.active
-                                                ? 'date-list active'
-                                                : 'date-list'}
-                                                key={list.id}
-                                                onClick={() => this.changeSelectedDate(list)}>
-                                                <div className="date">
-                                                    {new Date(list.date).getDate()}
-                                                </div>
-                                                <div className="day">
-                                                    {this
-                                                        .getDayName
-                                                        .call(this, list)}
-                                                </div>
+                                <div className="movies-cast-box">
+                                    <div className="cast-list-block">
+                                        <div>
+                                            <div className="cast-title">
+                                                Director
                                             </div>
-                                        )
-                                    })}
-                            </div>
-                        </div>
-                        <i
-                            className="fa fa-angle-right mg-lft-20 arrow-align-middle font-45"
-                            onClick={() => this.scrollToDate('right')}></i>
-
-                    </div>
-                    <div className="filter-by-others">
-                        <div className="movie-screen" onClick={this.toggleLanguage}>
-                            <div className="width80 screen-print">{this.state.languageList.active}</div>
-                            <i
-                                className={`fa fa-angle-down book-movie ${this.state.languageToggle
-                                ? 'rotate'
-                                : ''}`}></i>
-                            <ul
-                                className={this.state.languageToggle
-                                ? "list-none dropdown-ul active"
-                                : "list-none dropdown-ul"}>
-                                {this
-                                    .state
-                                    .languageList
-                                    .list
-                                    .map(list => {
-                                        if (list && list.name !== this.state.languageList.active) {
-                                            return <li key={list.id} onClick={() => this.changeLanguage(list)}>{list.name}</li>
-                                        }
-                                    })}
-                            </ul>
-                        </div>
-                        <div className="region-box">
-                            <div
-                                className="width80 region-box-title screen-print"
-                                onClick={this.toggleRegion}>{this.state.selectedRegion}
-                            </div>
-                            <i
-                                className={`fa fa-angle-down book-movie ${this.state.regionToggle
-                                ? 'rotate'
-                                : ''}`}></i>
-                            <ul
-                                className={this.state.regionToggle
-                                ? "list-none dropdown-ul active"
-                                : "list-none dropdown-ul"}>
-                                {this
-                                    .state
-                                    .regionList
-                                    .map(list => {
-                                        return <li key={list.id} onClick={() => this.changeRegions(list)}>
-                                            <input
-                                                className="cursor-pointer"
-                                                type="checkbox"
-                                                checked={list.active}
-                                                value={list.name}/>
-                                            <span className="mg-left-5">{list.name}</span>
-                                        </li>
-                                    })}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                {this
-                    .state
-                    .selectedRegion
-                    .toLowerCase() === 'Filter Sub Regions'.toLowerCase()
-                    ? null
-                    : <div className="selected-regions">
-                        {this
-                            .state
-                            .regionList
-                            .map(regionObj => {
-                                if (regionObj.active) {
-                                    return <div
-                                        key={regionObj.id}
-                                        className="region-name"
-                                        onClick={() => this.changeRegions(regionObj)}>
-                                        {regionObj.name}
-                                        <i className="fa fa-times-circle region-close"></i>
-                                    </div>
-                                }
-                            })}
-                    </div>
-}
-                <div className="theatre-list-box">
-
-                    <div className="theatre-list">
-                        <div className="theatre-name-block">
-                            <div className="text-center">
-                                <i className="fa fa-heart clr-red"></i>
-                            </div>
-                            <div className="theatre-name">
-                                Carnival: Huma, Kanjurmarg
-                            </div>
-                        </div>
-                        <div className="theatre-timings-block">
-                            <div className="timing-list">
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">11:40AM</div>
+                                            <div>
+                                                <div className="actor-image"></div>
+                                                <div className="actor-name">Zack Snyder</div>
+                                            </div>
                                         </div>
-                                        <div className="timing-attribute"></div>
                                     </div>
-                                </div>
-
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">01:00PM</div>
+                                    <div className="cast-list-block-list">
+                                        <div>
+                                            <div className="cast-title">
+                                                Cast & Crew
+                                            </div>
+                                            <div className="grid-system">
+                                                <div className="actor-image"></div>
+                                                <div className="actor-name">Henry Cavill</div>
+                                            </div>
+                                            <div className="grid-system">
+                                                <div className="actor-image"></div>
+                                                <div className="actor-name">Amy Adams</div>
+                                            </div>
+                                            <div className="grid-system">
+                                                <div className="actor-image"></div>
+                                                <div className="actor-name">Michael Shannon</div>
+                                            </div>
+                                            <div className="grid-system">
+                                                <div className="actor-image"></div>
+                                                <div className="actor-name">Kevin Costner</div>
+                                            </div>
                                         </div>
-                                        <div className="timing-attribute"></div>
-                                    </div>
-                                </div>
-
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">4:00PM</div>
-                                        </div>
-                                        <div className="timing-attribute"></div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div className="theatre-list">
-                        <div className="theatre-name-block">
-                            <div className="text-center">
-                                <i className="fa fa-heart clr-red"></i>
-                            </div>
-                            <div className="theatre-name">
-                                Balaji Movieplex: Kopar Khairane
-                            </div>
-                        </div>
-                        <div className="theatre-timings-block">
-                            <div className="timing-list">
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">12:15PM</div>
+                            <div className="filters-block">
+                                <div className="filter-by-date display-flex">
+                                    <i
+                                        className="fa fa-angle-left mg-rt-15 arrow-align-middle font-45"
+                                        onClick={() => this.scrollToDate('left')}></i>
+                                    <div className="dates-block display-flex">
+                                        <div className="scrolling-dates display-flex" id="scrolling-dates">
+                                            {this
+                                                .state
+                                                .dateList
+                                                .map(list => {
+                                                    return (
+                                                        <div
+                                                            className={list.active
+                                                            ? 'date-list active'
+                                                            : 'date-list'}
+                                                            key={list.id}
+                                                            onClick={() => this.changeSelectedDate(list)}>
+                                                            <div className="date">
+                                                                {new Date(list.date).getDate()}
+                                                            </div>
+                                                            <div className="day">
+                                                                {this
+                                                                    .getDayName
+                                                                    .call(this, list)}
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
                                         </div>
-                                        <div className="timing-attribute"></div>
                                     </div>
-                                </div>
+                                    <i
+                                        className="fa fa-angle-right mg-lft-20 arrow-align-middle font-45"
+                                        onClick={() => this.scrollToDate('right')}></i>
 
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">01:15PM</div>
-                                        </div>
-                                        <div className="timing-attribute"></div>
+                                </div>
+                                <div className="filter-by-others">
+                                    <div className="movie-screen" onClick={this.toggleLanguage}>
+                                        <div className="width80 screen-print">{this.state.languageList.active}</div>
+                                        <i
+                                            className={`fa fa-angle-down book-movie ${this.state.languageToggle
+                                            ? 'rotate'
+                                            : ''}`}></i>
+                                        <ul
+                                            className={this.state.languageToggle
+                                            ? "list-none dropdown-ul active"
+                                            : "list-none dropdown-ul"}>
+                                            {this
+                                                .state
+                                                .languageList
+                                                .list
+                                                .map(list => {
+                                                    if (list && list.name !== this.state.languageList.active) {
+                                                        return <li key={list.id} onClick={() => this.changeLanguage(list)}>{list.name}</li>
+                                                    }
+                                                })}
+                                        </ul>
                                     </div>
-                                </div>
-
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">3:00PM</div>
+                                    <div className="region-box">
+                                        <div
+                                            className="width80 region-box-title screen-print"
+                                            onClick={this.toggleRegion}>{this.state.selectedRegion}
                                         </div>
-                                        <div className="timing-attribute"></div>
-                                    </div>
-                                </div>
-
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">5:45PM</div>
-                                        </div>
-                                        <div className="timing-attribute"></div>
-                                    </div>
-                                </div>
-
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">7:00PM</div>
-                                        </div>
-                                        <div className="timing-attribute"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="theatre-list">
-                        <div className="theatre-name-block">
-                            <div className="text-center">
-                                <i className="fa fa-heart"></i>
-                            </div>
-                            <div className="theatre-name">
-                                INOX: Palm Beach Galleria Mall, Navi Mumbai
-                            </div>
-                        </div>
-                        <div className="theatre-timings-block">
-                            <div className="timing-list">
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">11:35AM</div>
-                                        </div>
-                                        <div className="timing-attribute"></div>
-                                    </div>
-                                </div>
-
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">12:15PM</div>
-                                        </div>
-                                        <div className="timing-attribute"></div>
-                                    </div>
-                                </div>
-
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">2:20PM</div>
-                                        </div>
-                                        <div className="timing-attribute"></div>
-                                    </div>
-                                </div>
-
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">5:10PM</div>
-                                        </div>
-                                        <div className="timing-attribute"></div>
-                                    </div>
-                                </div>
-
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">8:00PM</div>
-                                        </div>
-                                        <div className="timing-attribute"></div>
-                                    </div>
-                                </div>
-
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">10:10PM</div>
-                                        </div>
-                                        <div className="timing-attribute"></div>
-                                    </div>
-                                </div>
-
-                                <div className="timing-container">
-                                    <div className="timing-pill" onClick={() => this.handleModal(true)}>
-                                        <div className="timing-details">
-                                            <div className="timing-text">11:30PM</div>
-                                        </div>
-                                        <div className="timing-attribute"></div>
+                                        <i
+                                            className={`fa fa-angle-down book-movie ${this.state.regionToggle
+                                            ? 'rotate'
+                                            : ''}`}></i>
+                                        <ul
+                                            className={this.state.regionToggle
+                                            ? "list-none dropdown-ul active"
+                                            : "list-none dropdown-ul"}>
+                                            {this
+                                                .state
+                                                .regionList
+                                                .map(list => {
+                                                    return <li key={list.id} onClick={() => this.changeRegions(list)}>
+                                                        <input
+                                                            className="cursor-pointer"
+                                                            type="checkbox"
+                                                            checked={list.active}
+                                                            value={list.name}/>
+                                                        <span className="mg-left-5">{list.name}</span>
+                                                    </li>
+                                                })}
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div className="modal-box">
-                    <Modal show={this.state.showModal} handleClose={() => this.handleModal(false)}>
-                        <div className="seat-book-modal">
-                            <div className="modal-title">
-                                Select Number of Seats ?
-                            </div>
-                            <div className="modal-content">
-                                <div className="text-center seat-image-block">
-                                    {this.state.showImage === 1 && <img src={bicycle} className="selected-img" alt="selected text"/>}
-                                    {this.state.showImage === 2 && <img src={motorcycle} className="selected-img" alt="selected text"/>}
-                                    {this.state.showImage === 3  && <img src={ricksaw} className="selected-img" alt="selected text"/>}
-                                    {this.state.showImage === 4  && <img src={taxi} className="selected-img" alt="selected text"/>}
-                                </div>
-
-                                <div className="seat-block">
+                            {this
+                                .state
+                                .selectedRegion
+                                .toLowerCase() === 'Filter Sub Regions'.toLowerCase()
+                                ? null
+                                : <div className="selected-regions">
                                     {this
                                         .state
-                                        .listOfTen
-                                        .map((number, index) => {
-                                            return (
-                                                <div
-                                                    className={`${this.state.selectedSeat === number.list ? 'seat-number selected':'seat-number'}`}
-                                                    key={index}
-                                                    onMouseEnter={() => this.setState({showImage: number.list})}
-                                                    onMouseOut = {() => this.setState({showImage: this.state.selectedSeat})}
-                                                    onClick={() => this.selectSeat(number.list)}>
-                                                    {index + 1}
+                                        .regionList
+                                        .map(regionObj => {
+                                            if (regionObj.active) {
+                                                return <div
+                                                    key={regionObj.id}
+                                                    className="region-name"
+                                                    onClick={() => this.changeRegions(regionObj)}>
+                                                    {regionObj.name}
+                                                    <i className="fa fa-times-circle region-close"></i>
                                                 </div>
-                                            )
-                                        })
+                                            }
+                                        })}
+                                </div>
 }
+                            <div className="theatre-list-box">
+
+                                <div className="theatre-list">
+                                    <div className="theatre-name-block">
+                                        <div className="text-center">
+                                            <i className="fa fa-heart clr-red"></i>
+                                        </div>
+                                        <div className="theatre-name">
+                                            Carnival: Huma, Kanjurmarg
+                                        </div>
+                                    </div>
+                                    <div className="theatre-timings-block">
+                                        <div className="timing-list">
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">11:40AM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">01:00PM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">4:00PM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="select-seats-btn text-center">
-                                    Select Seats
+
+                                <div className="theatre-list">
+                                    <div className="theatre-name-block">
+                                        <div className="text-center">
+                                            <i className="fa fa-heart clr-red"></i>
+                                        </div>
+                                        <div className="theatre-name">
+                                            Balaji Movieplex: Kopar Khairane
+                                        </div>
+                                    </div>
+                                    <div className="theatre-timings-block">
+                                        <div className="timing-list">
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">12:15PM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">01:15PM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">3:00PM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">5:45PM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">7:00PM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
+                                <div className="theatre-list">
+                                    <div className="theatre-name-block">
+                                        <div className="text-center">
+                                            <i className="fa fa-heart"></i>
+                                        </div>
+                                        <div className="theatre-name">
+                                            INOX: Palm Beach Galleria Mall, Navi Mumbai
+                                        </div>
+                                    </div>
+                                    <div className="theatre-timings-block">
+                                        <div className="timing-list">
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">11:35AM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">12:15PM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">2:20PM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">5:10PM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">8:00PM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">10:10PM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+
+                                            <div className="timing-container">
+                                                <div className="timing-pill" onClick={() => this.handleModal(context, true)}>
+                                                    <div className="timing-details">
+                                                        <div className="timing-text">11:30PM</div>
+                                                    </div>
+                                                    <div className="timing-attribute"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
-                    </Modal>
-                </div>
+                            <div className="modal-box">
+                                <Modal show={this.state.showModal} handleClose={() => this.handleModal(context, false)}>
+                                    <div className="seat-book-modal">
+                                        <div className="modal-title">
+                                            Select Number of Seats ?
+                                        </div>
+                                        <div className="modal-content">
+                                            <div className="text-center seat-image-block">
+                                                {this.state.showImage === 1 && <img src={bicycle} className="selected-img" alt="selected text"/>}
+                                                {this.state.showImage === 2 && <img src={motorcycle} className="selected-img" alt="selected text"/>}
+                                                {this.state.showImage === 3 && <img src={ricksaw} className="selected-img" alt="selected text"/>}
+                                                {this.state.showImage === 4 && <img src={taxi} className="selected-img" alt="selected text"/>}
+                                            </div>
+
+                                            <div className="seat-block">
+                                                {this
+                                                    .state
+                                                    .listOfTen
+                                                    .map((number, index) => {
+                                                        return (
+                                                            <div
+                                                                className={`${this.state.selectedSeat === number.list
+                                                                ? 'seat-number selected'
+                                                                : 'seat-number'}`}
+                                                                key={index}
+                                                                onMouseEnter={() => this.setState({showImage: number.list})}
+                                                                onMouseOut=
+                                                                {() => this.setState({showImage: this.state.selectedSeat})}
+                                                                onClick={() => this.selectSeat(context, number.list)}>
+                                                                {index + 1}
+                                                            </div>
+                                                        )
+                                                    })
+}
+                                            </div>
+                                            <div className="select-seats-btn text-center">
+                                                Select Seats
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Modal>
+                            </div>
+
+                        </React.Fragment>
+                    )}
+                </ShowTimeAppContext.Consumer>
             </div>
         )
     }
