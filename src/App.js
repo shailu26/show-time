@@ -13,7 +13,8 @@ const HomeComponent = (lazy(() => (import ('./components/home/home'))));
 const Navbar = (lazy(() => (import ('./components/navbar/navbar'))));
 const MovieDetailComponent = (lazy(() => (import ('./components/movie-detail/movieDetail'))));
 const BookMovieComponent = (lazy(() => (import ('./components/book-movie/bookMovie'))));
-
+const TheatreLayoutComponent = (lazy(() => (import ('./components/theatre-layout/theatre-layout'))));
+const AdminLayout = (lazy(() => (import ('./components/admin/admin-layout/admin-layout'))));
 let component = () => {
     return (
         <div className='main-container'>
@@ -25,6 +26,14 @@ let component = () => {
                     <Route
                         path='/movie/:movieName/:id/book-tickets'
                         component={BookMovieComponent}
+                        exact/>
+                    <Route
+                        path='/movie/:movieName/:id/select-seats'
+                        component={TheatreLayoutComponent}
+                        exact/>
+                    <Route
+                        path='/admin'
+                        component={AdminLayout}
                         exact/> {/* <Route path='/' component={requireAuth(HomeComponent)} exact/> */}
                 </Switch>
             </Suspense>

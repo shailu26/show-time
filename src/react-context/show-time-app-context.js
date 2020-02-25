@@ -4,6 +4,15 @@ const ShowTimeAppContext = React.createContext();
 class ShowTimeProvider extends Component {
     state = {
         seatData: {
+            isSeatSelected: false,
+            setIsSeatSelected: (value) => {
+                this.setState(prevState => ({
+                    seatData: { // object that we want to update
+                        ...prevState.seatData, // keep all other key-value pairs
+                        isSeatSelected: value // update the value of specific key
+                    }
+                }))
+            },
             totalSeats: 0,
             setTotalSeat: (value) => {
                 this.setState(prevState => ({
@@ -13,7 +22,7 @@ class ShowTimeProvider extends Component {
                     }
                 }))
             },
-            selectedSeat: 1,
+            selectedSeat: 0,
             setSelectedSeat: (value) => {
                 this.setState(prevState => ({
                     seatData: { // object that we want to update

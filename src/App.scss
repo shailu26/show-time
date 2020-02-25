@@ -337,3 +337,16 @@ input:checked+.toggle .star--6 {
 .text-center {
   text-align: center;
 }
+
+.txt-right {
+  text-align: right;
+}
+
+.font-14 {
+  font-size: 14px;
+}
+
+.btn.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

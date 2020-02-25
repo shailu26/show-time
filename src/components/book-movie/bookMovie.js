@@ -202,7 +202,6 @@ class BookMovie extends Component {
             .state
             .regionList
             .findIndex(list => list.active === true);
-        console.log(index);
         if (index > -1) {
             let text = [];
             this
@@ -221,18 +220,33 @@ class BookMovie extends Component {
         }
     }
     selectSeat = (context, listNumber) => {
-				this.setState({selectedSeat: listNumber});
-				console.log(context);
-				context.state.seatData.setSelectedSeat(listNumber);
+        this.setState({selectedSeat: listNumber});
+        console.log(context);
+        context
+            .state
+            .seatData
+            .setSelectedSeat(listNumber);
     }
 
     handleModal = (context, value) => {
-				this.setState({showModal: value});
-				// if modal is closed then set selected seat Value to 1
-				if (!value) {
-					context.state.seatData.setSelectedSeat(1);
-					this.setState({selectedSeat: 1});
-				}
+        this.setState({showModal: value});
+        // if modal is closed then set selected seat Value to 1
+        if (!value) {
+            context
+                .state
+                .seatData
+                .setSelectedSeat(1);
+            this.setState({selectedSeat: 1});
+        }
+    }
+
+    goToTheatreLayout = (context) => {
+				context.state.seatData.setTotalSeat(4);
+				context.state.seatData.setIsSeatSelected(true);
+        this
+            .props
+            .history
+            .push(`/movie/${this.props.match.params.movieName}/${this.props.match.params.id}/select-seats`);
     }
 
     render() {
@@ -594,7 +608,9 @@ class BookMovie extends Component {
 
                             </div>
                             <div className="modal-box">
-                                <Modal show={this.state.showModal} handleClose={() => this.handleModal(context, false)}>
+                                <Modal
+                                    show={this.state.showModal}
+                                    handleClose={() => this.handleModal(context, false)}>
                                     <div className="seat-book-modal">
                                         <div className="modal-title">
                                             Select Number of Seats ?
@@ -628,7 +644,7 @@ class BookMovie extends Component {
                                                     })
 }
                                             </div>
-                                            <div className="select-seats-btn text-center">
+                                            <div className="select-seats-btn text-center" onClick={() => this.goToTheatreLayout(context)}>
                                                 Select Seats
                                             </div>
                                         </div>

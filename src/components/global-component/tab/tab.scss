@@ -1,0 +1,90 @@
+@import '../../../assets/stylesheets/variables';
+
+li.tab {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+a.tab-link.custom-link {
+    text-align: center;
+    cursor: pointer;
+}
+
+a.tab-link.custom-link.active {
+    background: #969696;
+}
+
+.tabs-nav::before,
+.tabs-nav::after {
+    clear: both;
+    display: table;
+    content: " ";
+}
+
+.show-time-app.black .tabs-nav {
+    border-bottom: 1px solid #151515;
+}
+
+.show-time-app.white .tabs-nav {
+    border-bottom: 1px solid #ddd;
+
+}
+
+.tabs-nav {
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.tabs-nav::before {
+    display: table;
+    content: " ";
+}
+
+.tabs-nav>li {
+    float: left;
+    margin-bottom: -1px;
+    cursor: pointer;
+}
+
+.navbar-nav>li {
+    position: relative;
+    display: block;
+}
+
+.tabs-nav>li>a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    letter-spacing: 0.5px;
+}
+
+.navbar-nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.tabs-nav>li.active>a,
+.tabs-nav>li.active>a:focus,
+.tabs-nav>li.active>a:hover {
+    cursor: pointer;
+    background-color: $tab-color;
+    border-bottom-color: transparent;
+}
+
+.show-time-app.black .tabs-nav>li.active>a,
+.show-time-app.black .tabs-nav>li.active>a:focus,
+.show-time-app.black .tabs-nav>li.active>a:hover {
+    border: 1px solid black;
+    color: white;
+    transition: 0.5s;
+
+}
+
+.show-time-app.white .tabs-nav>li.active>a,
+.show-time-app.white .tabs-nav>li.active>a:focus,
+.show-time-app.white .tabs-nav>li.active>a:hover {
+    color: white;
+}
