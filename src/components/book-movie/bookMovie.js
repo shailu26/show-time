@@ -610,7 +610,7 @@ class BookMovie extends Component {
                             <div className="modal-box">
                                 <Modal
                                     show={this.state.showModal}
-                                    handleClose={() => this.handleModal(context, false)}>
+                                    handleClose={() => this.handleModal(context, false)} showCloseButton={true}>
                                     <div className="seat-book-modal">
                                         <div className="modal-title">
                                             Select Number of Seats ?

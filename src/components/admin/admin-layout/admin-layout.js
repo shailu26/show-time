@@ -7,7 +7,14 @@ import {Tab} from '../../global-component/tab/tab';
 class AdminPanel extends Component {
     state = {
         selection: 'seat',
-        seatLayoutList: []
+        seatLayoutList: [{id: 1, name: 'abc', description: 'ok ok ok '}],
+        showSeatForm: false
+    }
+    setShowSeatForm = (value) => {
+        this.setState({showSeatForm: value});
+    }
+    setseatLayoutList = (list) => {
+        this.setState({seatLayoutList: list});
     }
     render() {
         return (
@@ -15,7 +22,7 @@ class AdminPanel extends Component {
 
                 <Tabs>
                     <Tab title={'Seat'} linkClassName={'custom-link'}>
-                        <AdminSeatLayout seatLayoutList={this.state.seatLayoutList}/>
+                        <AdminSeatLayout setseatLayoutList={this.setseatLayoutList} seatLayoutList={this.state.seatLayoutList} showSeatForm={this.state.showSeatForm} setShowSeatForm={this.setShowSeatForm}/>
                     </Tab>
                     <Tab title={'Theatre'} linkClassName={'custom-link'}>
                         <div>Theatre tab</div>
