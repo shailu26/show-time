@@ -6,7 +6,7 @@
 
 .book-movie-box {
   height: 17vh;
-  background: $background-color;
+  background: $primary-color;
   display: flex;
 }
 
@@ -185,7 +185,7 @@
 }
 
 .date-list.active {
-  background: $background-color;
+  background: $primary-color;
   color: black;
 }
 
@@ -434,7 +434,7 @@ i.fa.fa-times-circle.region-close {
 
 .seat-number:hover,
 .seat-number.selected {
-  background: $background-color;
+  background: $primary-color;
   color: black;
 }
 
@@ -449,7 +449,7 @@ i.fa.fa-times-circle.region-close {
 }
 
 .select-seats-btn {
-  background: $background-color;
+  background: $primary-color;
   padding: 20px;
   font-size: 20px;
   margin: 20px 5px 5px;
